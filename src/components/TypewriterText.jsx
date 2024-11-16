@@ -97,10 +97,6 @@ function TypewriterText({ text, onComplete, isCode = false, language = 'javascri
   };
 
   if (isCode) {
-    // Split the code into lines for line numbering
-    const lines = displayedText.split('\n');
-    const lineNumbers = lines.map((_, i) => i + 1);
-
     return (
       <div className="relative group">
         <div className="absolute right-2 top-2 flex gap-2">
@@ -171,13 +167,13 @@ function TypewriterText({ text, onComplete, isCode = false, language = 'javascri
               <div 
                 className="bg-gray-800 text-gray-500 text-right py-4 select-none border-r border-gray-700 px-4" 
               >
-                {lineNumbers.map(num => (
-                  <div key={num} className="leading-6 text-xs">{num}</div>
+                {displayedText.trim().split('\n').map((_, i) => (
+                  <div key={i} className="leading-6 text-xs">{i + 1}</div>
                 ))}
               </div>
-              <pre className="p-4 overflow-x-auto">
-                <code ref={codeRef} className={`language-${language} text-sm leading-6`}>
-                  {displayedText}
+              <pre className="p-4 overflow-x-auto m-0">
+                <code ref={codeRef} className={`language-${language} text-sm leading-6 whitespace-pre`}>
+                  {displayedText.trim()}
                 </code>
               </pre>
             </div>

@@ -192,13 +192,13 @@ export default function ChatMessage({ message, isUser, isDark, imageData, handle
                         <div 
                           className="bg-gray-800 text-gray-500 text-right py-4 select-none border-r border-gray-700 px-4"
                         >
-                          {part.content.split('\n').map((_, i) => (
+                          {part.content.trim().split('\n').map((_, i) => (
                             <div key={i} className="leading-6 text-xs">{i + 1}</div>
                           ))}
                         </div>
-                        <pre className="p-4 overflow-x-auto">
-                          <code className={`language-${language} text-sm leading-6`}>
-                            {part.content}
+                        <pre className="p-4 overflow-x-auto m-0">
+                          <code className={`language-${language} text-sm leading-6 whitespace-pre`}>
+                            {part.content.trim()}
                           </code>
                         </pre>
                       </div>
